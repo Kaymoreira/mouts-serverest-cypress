@@ -13,14 +13,12 @@ describe('API - Login', () => {
 });
 
 describe('API - Usuários', () => {
-  // Tracks users created in a test so afterEach leaves the shared ServeRest
-  // dataset clean: unique email avoids collision on entry, cleanup avoids
-  // polluting on exit.
+  // keep the created id so afterEach deletes it and keeps the shared base clean
   let createdUserId;
 
   afterEach(() => {
     if (createdUserId) {
-      usuariosApi.deletar(createdUserId);
+      usuariosApi.remove(createdUserId);
       createdUserId = undefined;
     }
   });
@@ -28,7 +26,7 @@ describe('API - Usuários', () => {
   it('cadastra um novo usuário e retorna 201 com o id gerado', () => {
     const payload = buildRandomUser({ nome: 'Kayque Teste API', administrador: 'false' });
 
-    usuariosApi.criar(payload).then((response) => {
+    usuariosApi.create(payload).then((response) => {
       expect(response.status).to.eq(201);
       expect(response.body.message).to.eq('Cadastro realizado com sucesso');
       expect(response.body._id).to.be.a('string').and.not.be.empty;
@@ -39,13 +37,13 @@ describe('API - Usuários', () => {
   it('rejeita cadastro de usuário com email já existente', () => {
     const payload = buildRandomUser({ nome: 'Kayque Teste API', administrador: 'false' });
 
-    // Cria o usuário uma vez...
-    usuariosApi.criar(payload).then((firstResponse) => {
+    usuariosApi.create(payload).then((firstResponse) => {
       expect(firstResponse.status).to.eq(201);
       createdUserId = firstResponse.body._id;
 
-      // ...e tenta cadastrar de novo com o mesmo email, sem falhar o teste no 400.
-      usuariosApi.criar(payload).then((secondResponse) => {
+      // second create with the same email must return 400; failOnStatusCode
+      // is false so Cypress lets us assert it instead of failing the test
+      usuariosApi.create(payload).then((secondResponse) => {
         expect(secondResponse.status).to.eq(400);
         expect(secondResponse.body.message).to.eq('Este email já está sendo usado');
       });

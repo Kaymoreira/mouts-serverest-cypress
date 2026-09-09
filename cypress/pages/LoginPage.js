@@ -1,6 +1,3 @@
-// Locators: the single inventory of this page's DOM contract.
-// Methods below never hardcode a selector, they reference this map, so a
-// data-testid change is a one-line edit here.
 const selectors = {
   email: '[data-testid="email"]',
   senha: '[data-testid="senha"]',
@@ -8,7 +5,6 @@ const selectors = {
   cadastrar: '[data-testid="cadastrar"]',
 };
 
-// Messages asserted against what the user actually sees, not CSS classes.
 const messages = {
   loginError: 'Email e/ou senha inválidos',
 };
@@ -20,8 +16,7 @@ class LoginPage {
   }
 
   fillEmail(email) {
-    // Split from cy. each command: the Cypress lint preset flags chaining
-    // two actions, and re-querying the element is more resilient.
+    // clear and type as separate commands, not chained (Cypress lint rule)
     cy.get(selectors.email).clear();
     cy.get(selectors.email).type(email);
     return this;

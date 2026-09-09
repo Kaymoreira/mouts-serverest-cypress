@@ -1,8 +1,6 @@
 import { API_URL } from '../config';
 
-// API Object: the request-level counterpart of a Page Object.
-// Centralizes every ServeRest endpoint so a route change touches one place,
-// exactly like a Page centralizes DOM selectors.
+// API Object: keeps the ServeRest user endpoints in one place.
 export const usuariosApi = {
   login(body) {
     return cy.request({
@@ -13,7 +11,7 @@ export const usuariosApi = {
     });
   },
 
-  criar(body) {
+  create(body) {
     return cy.request({
       method: 'POST',
       url: `${API_URL}/usuarios`,
@@ -22,7 +20,7 @@ export const usuariosApi = {
     });
   },
 
-  deletar(id) {
+  remove(id) {
     return cy.request({
       method: 'DELETE',
       url: `${API_URL}/usuarios/${id}`,

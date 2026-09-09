@@ -1,8 +1,7 @@
 {
   "name": "mouts-serverest-cypress",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "End-to-end and API test suite for the ServeRest application, built with Cypress.",
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
@@ -10,8 +9,14 @@
     "lint": "eslint .",
     "format": "prettier --write ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "cypress",
+    "e2e",
+    "api",
+    "testing",
+    "serverest"
+  ],
+  "author": "Kayque Moreira",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^10.0.1",

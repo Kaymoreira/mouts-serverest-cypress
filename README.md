@@ -26,6 +26,10 @@ npm run format    # Prettier
 
 Node na versão fixada em `.nvmrc` (22). Sem `.env`, porque a massa e as credenciais do ServeRest são públicas e há um único ambiente. O endpoint fica centralizado em `cypress/support/config.js`, pronto para receber uma variável de ambiente quando o alvo for um ambiente privado.
 
+## Idioma do projeto
+
+O código e os comentários estão em **inglês**, por ser a língua universal de código e facilitar a leitura por qualquer time. Os **títulos dos cenários** (`describe`/`it`) ficam em **português**, para o relatório do Cypress ser lido com naturalidade pelo time local. As strings comparadas nas asserções permanecem em português quando são respostas reais da API ou da UI do ServeRest.
+
 ## Estrutura
 
 ```
@@ -83,11 +87,11 @@ O preset oficial `eslint-plugin-cypress` roda no CI e pega anti-padrões automat
 
 ## Cobertura atual
 
-| Nível | Cenário |
-|-------|---------|
-| UI | Login com sucesso leva à home administrativa |
-| UI | Credenciais inválidas mostram mensagem de erro |
-| UI | Cadastro de novo usuário com sucesso |
-| API | Login válido retorna 200 e token Bearer |
-| API | Cadastro válido retorna 201 com id |
-| API | Cadastro com e-mail duplicado retorna 400 |
+| Nível | Cenário                                        |
+| ----- | ---------------------------------------------- |
+| UI    | Login com sucesso leva à home administrativa   |
+| UI    | Credenciais inválidas mostram mensagem de erro |
+| UI    | Cadastro de novo usuário com sucesso           |
+| API   | Login válido retorna 200 e token Bearer        |
+| API   | Cadastro válido retorna 201 com id             |
+| API   | Cadastro com e-mail duplicado retorna 400      |

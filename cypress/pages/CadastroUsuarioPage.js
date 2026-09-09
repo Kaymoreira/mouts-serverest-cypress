@@ -1,4 +1,3 @@
-// Locators: single inventory of this page's DOM contract (see LoginPage).
 const selectors = {
   nome: '[data-testid="nome"]',
   email: '[data-testid="email"]',
@@ -17,8 +16,6 @@ class CadastroUsuarioPage {
   }
 
   fillName(nome) {
-    // Split from cy. each command: the Cypress lint preset flags chaining
-    // two actions, and re-querying the element is more resilient.
     cy.get(selectors.nome).clear();
     cy.get(selectors.nome).type(nome);
     return this;
