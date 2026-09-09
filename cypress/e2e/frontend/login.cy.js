@@ -1,12 +1,7 @@
 import LoginPage from '../../pages/LoginPage';
 import CadastroUsuarioPage from '../../pages/CadastroUsuarioPage';
 import { buildRandomUser } from '../../support/userFactory';
-
-// Credentials from a seeded ServeRest account, valid for the public demo API.
-const VALID_USER = {
-  email: 'fulano@qa.com',
-  password: 'teste',
-};
+import users from '../../fixtures/users.json';
 
 describe('Login', () => {
   beforeEach(() => {
@@ -14,7 +9,7 @@ describe('Login', () => {
   });
 
   it('faz login com sucesso e chega na home administrativa', () => {
-    LoginPage.login(VALID_USER.email, VALID_USER.password);
+    LoginPage.login(users.valid.email, users.valid.password);
 
     cy.url().should('include', '/admin/home');
     cy.get('[data-testid="logout"]').should('be.visible');
@@ -36,5 +31,9 @@ describe('Cadastro de usuário', () => {
     CadastroUsuarioPage.register(novoUsuario);
 
     CadastroUsuarioPage.getSuccessMessage().should('be.visible');
+    // Confirma que o cadastro completou de verdade: o ServeRest auto-loga o
+    // usuário comum e redireciona para /home. Sem isso, a mensagem poderia
+    // piscar sem o cadastro ter concluído.
+    cy.url().should('include', '/home');
   });
 });
