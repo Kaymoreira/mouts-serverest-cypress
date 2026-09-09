@@ -1,3 +1,15 @@
+// Locators: single inventory of this page's DOM contract (see LoginPage).
+const selectors = {
+  nome: '[data-testid="nome"]',
+  email: '[data-testid="email"]',
+  password: '[data-testid="password"]',
+  cadastrar: '[data-testid="cadastrar"]',
+};
+
+const messages = {
+  success: 'Cadastro realizado com sucesso',
+};
+
 class CadastroUsuarioPage {
   visit() {
     cy.visit('/cadastrarusuarios');
@@ -5,22 +17,27 @@ class CadastroUsuarioPage {
   }
 
   fillName(nome) {
-    cy.get('[data-testid="nome"]').clear().type(nome);
+    // Split from cy. each command: the Cypress lint preset flags chaining
+    // two actions, and re-querying the element is more resilient.
+    cy.get(selectors.nome).clear();
+    cy.get(selectors.nome).type(nome);
     return this;
   }
 
   fillEmail(email) {
-    cy.get('[data-testid="email"]').clear().type(email);
+    cy.get(selectors.email).clear();
+    cy.get(selectors.email).type(email);
     return this;
   }
 
   fillPassword(password) {
-    cy.get('[data-testid="password"]').clear().type(password);
+    cy.get(selectors.password).clear();
+    cy.get(selectors.password).type(password);
     return this;
   }
 
   submit() {
-    cy.get('[data-testid="cadastrar"]').click();
+    cy.get(selectors.cadastrar).click();
     return this;
   }
 
@@ -33,7 +50,7 @@ class CadastroUsuarioPage {
   }
 
   getSuccessMessage() {
-    return cy.contains('Cadastro realizado com sucesso');
+    return cy.contains(messages.success);
   }
 }
 
