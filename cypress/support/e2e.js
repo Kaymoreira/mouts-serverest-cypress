@@ -1,2 +1,1 @@
-// Runs before every test file. No global setup needed for this challenge,
-// kept intentionally empty rather than importing unused custom commands.
+// runs before every test file; empty on purpose (no global setup needed here)

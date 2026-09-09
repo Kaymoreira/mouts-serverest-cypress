@@ -31,9 +31,8 @@ describe('Cadastro de usuário', () => {
     CadastroUsuarioPage.register(novoUsuario);
 
     CadastroUsuarioPage.getSuccessMessage().should('be.visible');
-    // Confirma que o cadastro completou de verdade: o ServeRest auto-loga o
-    // usuário comum e redireciona para /home. Sem isso, a mensagem poderia
-    // piscar sem o cadastro ter concluído.
-    cy.url().should('include', '/home');
+    // registration auto-logs the user in and redirects to the user home (/home),
+    // not the admin one, so the success message really means it worked
+    cy.url().should('include', '/home').and('not.include', '/admin');
   });
 });

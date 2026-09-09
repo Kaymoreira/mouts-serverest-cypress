@@ -1,7 +1,5 @@
-// Generates a unique user per test run so re-running the suite never hits
-// "esse email já está sendo usado" from a previous execution.
-// Single source of truth: front-end and API specs both build from here and
-// pass overrides for whatever fields they need (e.g. `administrador`).
+// Unique email on every run, so running the suite twice does not fail with
+// "email already used". Overrides let each spec add the fields it needs.
 export function buildRandomUser(overrides = {}) {
   const unique = `${Date.now()}_${Math.floor(Math.random() * 10000)}`;
   return {
