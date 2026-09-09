@@ -1,6 +1,6 @@
 # ServeRest, Automação de Testes com Cypress
 
-[![Cypress Tests](https://github.com/SEU_USUARIO/mouts-serverest-cypress/actions/workflows/cypress.yml/badge.svg)](https://github.com/SEU_USUARIO/mouts-serverest-cypress/actions/workflows/cypress.yml)
+[![Cypress Tests](https://github.com/Kaymoreira/mouts-serverest-cypress/actions/workflows/cypress.yml/badge.svg)](https://github.com/Kaymoreira/mouts-serverest-cypress/actions/workflows/cypress.yml)
 
 Suíte de testes automatizados para o [ServeRest](https://serverest.dev), cobrindo dois níveis: interface (E2E no front) e API (nível de request). O foco não foi só fazer os testes passarem, foi montar uma base que sobrevive a mudança e explica as próprias decisões.
 
